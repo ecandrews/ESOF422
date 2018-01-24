@@ -5,41 +5,32 @@
         <antialiasing>false</antialiasing>
         <showassocnames>false</showassocnames>
         <showattributes>true</showattributes>
-        <showmultiplicities>true</showmultiplicities>
-        <showoperations>true</showoperations>
+        <showmultiplicities>false</showmultiplicities>
+        <showoperations>false</showoperations>
         <showrolenames>true</showrolenames>
         <showgrid>false</showgrid>
     </diagramOptions>
     <node id="Movie" sizeCalculated="true" type="Class">
         <name>Movie</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>308.0</x>
-            <y>23.0</y>
+            <x>319.8443885764556</x>
+            <y>42.476221434187224</y>
         </strategy>
         <hidden>false</hidden>
     </node>
     <node id="Rental" sizeCalculated="true" type="Class">
         <name>Rental</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>2.0</x>
-            <y>30.0</y>
+            <x>29.270084390655654</x>
+            <y>51.460354220135315</y>
         </strategy>
         <hidden>false</hidden>
     </node>
-    <node height="86.0" id="Customer" sizeCalculated="false"
-        type="Class" width="115.1455078125">
+    <node id="Customer" sizeCalculated="true" type="Class">
         <name>Customer</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>87.0</x>
-            <y>213.0</y>
-        </strategy>
-        <hidden>false</hidden>
-    </node>
-    <node id="PriceCode" sizeCalculated="true" type="Enumeration">
-        <name>PriceCode</name>
-        <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>316.0</x>
-            <y>166.0</y>
+            <x>48.03713836101372</x>
+            <y>206.0</y>
         </strategy>
         <hidden>false</hidden>
     </node>
@@ -49,11 +40,12 @@
         <name>custRentals</name>
         <properties>
             <edgeproperty id="custRentals::target::rolename"
-                sizeCalculated="true" type="rolename" userDefined="true" visible="true">
+                sizeCalculated="true" type="rolename"
+                userDefined="false" visible="true">
                 <name>rentals</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>-16.0</userOffsetX>
-                    <userOffsetY>10.0</userOffsetY>
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
                     <attached>custRentals::WayPoint::1</attached>
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>
@@ -75,19 +67,6 @@
                 </strategy>
                 <hidden>false</hidden>
             </edgeproperty>
-            <edgeproperty id="custRentals::source::rolename"
-                sizeCalculated="true" type="rolename" userDefined="true" visible="true">
-                <name>renter</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>-22.0</userOffsetX>
-                    <userOffsetY>-7.0</userOffsetY>
-                    <attached>custRentals::WayPoint::0</attached>
-                    <offset_x>8</offset_x>
-                    <offset_y>8</offset_y>
-                    <placement>TOP</placement>
-                </strategy>
-                <hidden>false</hidden>
-            </edgeproperty>
             <edgeproperty id="custRentals::source::multiplicity"
                 sizeCalculated="true" type="multiplicity"
                 userDefined="false" visible="true">
@@ -99,6 +78,20 @@
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>
                     <placement>BOTTOM</placement>
+                </strategy>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty id="custRentals::source::rolename"
+                sizeCalculated="true" type="rolename"
+                userDefined="false" visible="true">
+                <name>renter</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <attached>custRentals::WayPoint::0</attached>
+                    <offset_x>8</offset_x>
+                    <offset_y>8</offset_y>
+                    <placement>TOP</placement>
                 </strategy>
                 <hidden>false</hidden>
             </edgeproperty>
@@ -152,26 +145,13 @@
         <target>Movie</target>
         <name>movRental</name>
         <properties>
-            <edgeproperty id="movRental::target::rolename"
-                sizeCalculated="true" type="rolename" userDefined="true" visible="true">
-                <name>movie</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>14.0</userOffsetY>
-                    <attached>movRental::WayPoint::1</attached>
-                    <offset_x>8</offset_x>
-                    <offset_y>8</offset_y>
-                    <placement>TOP</placement>
-                </strategy>
-                <hidden>false</hidden>
-            </edgeproperty>
             <edgeproperty id="movRental::target::multiplicity"
                 sizeCalculated="true" type="multiplicity"
-                userDefined="true" visible="true">
+                userDefined="false" visible="true">
                 <name>1</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>2.0</userOffsetX>
-                    <userOffsetY>-11.0</userOffsetY>
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
                     <attached>movRental::WayPoint::1</attached>
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>
@@ -179,12 +159,25 @@
                 </strategy>
                 <hidden>false</hidden>
             </edgeproperty>
+            <edgeproperty id="movRental::target::rolename"
+                sizeCalculated="true" type="rolename" userDefined="true" visible="true">
+                <name>movie</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>7.0</userOffsetY>
+                    <attached>movRental::WayPoint::1</attached>
+                    <offset_x>8</offset_x>
+                    <offset_y>8</offset_y>
+                    <placement>TOP</placement>
+                </strategy>
+                <hidden>false</hidden>
+            </edgeproperty>
             <edgeproperty id="movRental::source::rolename"
                 sizeCalculated="true" type="rolename" userDefined="true" visible="true">
                 <name>movRentals</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>7.0</userOffsetX>
-                    <userOffsetY>15.0</userOffsetY>
+                    <userOffsetX>3.0</userOffsetX>
+                    <userOffsetY>6.0</userOffsetY>
                     <attached>movRental::WayPoint::0</attached>
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>
@@ -194,11 +187,11 @@
             </edgeproperty>
             <edgeproperty id="movRental::source::multiplicity"
                 sizeCalculated="true" type="multiplicity"
-                userDefined="true" visible="true">
+                userDefined="false" visible="true">
                 <name>*</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>10.0</userOffsetX>
-                    <userOffsetY>-8.0</userOffsetY>
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
                     <attached>movRental::WayPoint::0</attached>
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>
