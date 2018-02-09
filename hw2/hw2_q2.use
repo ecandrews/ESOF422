@@ -1,0 +1,85 @@
+model MementoDesignPattern
+
+
+-- classes
+class Originator
+attributes
+	state:String
+operations
+	setMemento(memento:Memento)
+	begin
+		self.state:=memento.getState();
+	end
+	createMemento():Memento
+	begin
+		declare mem:Memento;
+		mem:=new Memento;
+		self.state:=mem.getState();
+		result:=mem;
+	end
+	getState():String
+	begin
+		result:=self.state;
+	end
+end
+
+class Memento
+attributes
+	state:String
+operations
+	getState():String
+	begin
+		result:=self.state;
+	end
+	setState(newState:String)
+	begin
+		self.state:=newState;
+	end
+end
+
+class Caretaker
+attributes
+	currentMemento:Memento
+	currentOrig:Originator
+operations
+	add()
+	begin
+		declare memento:Memento, orig:Originator;
+		orig:=new Originator;
+		memento:=(orig.createMemento());
+		self.currentMemento:=memento;
+		self.currentOrig:=orig;
+	end
+	return()
+	begin
+		self.currentOrig.setMemento(self.currentMemento);
+		self.currentMemento:=Undefined;	
+	end
+end
+
+
+-- associations
+association originatorAndMemento between
+	Originator [1] role orig
+	Memento [1] role memento
+end
+
+aggregation caretakerOfMemento between
+	Caretaker [1] role caretaker
+	Memento [1] role mem
+end
+
+
+-- constraints
+constraints
+
+context Originator::setMemento(memento : Memento)
+	post: self.state = memento.state
+
+context Caretaker::add()
+	pre: (self.currentMemento).oclIsUndefined = true
+	post: (self.currentMemento).oclIsUndefined = false
+
+context Caretaker::return()
+	pre: (self.currentMemento).oclIsUndefined = false
+	post: (self.currentMemento).oclIsUndefined = true
