@@ -1,0 +1,85 @@
+model FPS
+
+-- classes
+class Human
+attributes
+	alive:Boolean init=true
+	health:Integer init=100
+	heldWeapon:Weapon
+	myTurnToAttack:Boolean
+	distFromClosestEnemy:Real
+operations
+	receiveAttack()
+	attackEnemy(heldWeapon:Weapon)
+	enemyKilled():Boolean
+statemachines
+	psm FightingThings
+	states
+		startUp:initial
+		neutral [alive=true]
+		attack [alive=true]
+		panic [alive=true]
+		die [alive=true]
+	transitions
+		startUp -> neutral {create}
+		neutral -> attack { attackEnemy() [distFromClosestEnemy<=heldWeapon.range and myTurnToAttack=true] }
+		neutral -> panic { receiveAttack() [distFromClosestEnemy>heldWeapon.range and myTurnToAttack=false] }
+		attack -> neutral { enemyKilled() }
+		attack -> die { receiveAttack() [health<=0] }
+		panic -> neutral { enemyKilled() }
+		panic -> die { receiveAttack() [health<=0] }
+	end
+end
+
+class Soldier
+attributes
+	alive:Boolean init=true
+	health:Integer
+	enemyTurnToAttack:Boolean
+	damageFromKnife:Integer init=15
+	damageFromGun:Integer init=10
+operations
+	attackHuman()
+	receiveAttack(attackingWeapon:Weapon)
+end
+
+abstract class Weapon
+attributes
+	baseDamage:Integer
+	range:Real
+end
+
+class Knife
+end
+
+class Shotgun
+end
+
+
+-- associations
+association enemies between
+	Human [1] role human
+	Soldier [1..*] role soldier
+end
+
+association heldWeapons between
+	Human [1] role human
+	Weapon [*] role weapons
+end
+
+association instantiationOfWeapon between
+	Knife [1] role knife
+	Weapon [1] role weapon
+end
+
+association instantiation2OfWeapon between
+	Shotgun [1] role shotgun
+	Weapon [1] role weapon
+end
+
+
+-- constraints
+constraints
+
+context Human
+	inv: self.distFromClosestEnemy >= 0

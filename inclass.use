@@ -1,47 +1,32 @@
 model InClass
 
-class Person
+class Combat
+
 attributes
-	name:String
-	age:Integer
-	salary:Real init: 30000
+	alive:Boolean init=true
+	health:Integer init=100
+
 operations
-	raiseSalary(rate:Real):Real
+	see_opponent(can_defeat:Boolean)
+	lost_opponent()
+	receive_blow()
+	pray()
+
+statemachines
+	psm FightingThings
+		states
+			startUp:initial
+			neutral [ alive = true ]
+			attack  [ alive = true ]
+			panic  [ alive = true ]
+			die  [ alive = false ]
+		transitions
+			startUp -> neutral { create }
+			neutral -> attack  { see_opponent() [ can_defeat = true ] }
+			neutral -> panic  { see_opponent() }
+			attack -> neutral  { lost_opponent() }
+			attack -> die  { receive_blow() [ health <= 0 ] }
+			panic -> neutral  { lost_opponent() }
+			panic -> die  { receive_blow() }
+	end
 end
-
-
-class Company
-attributes
-	name:String
-	location:String
-operations
-	hire(p:Person)
-		begin
-		end
-	fire(p:Person)
-		begin
-		end
-end
-
-
-association WorksFor between
-	Person[*] role employee
-	Company[0..1] role employer
-end
-
-
-constraints
-context Company::hire(p:Person)
-	pre hirePre1: p.isDefined()
-	pre hirePre2: employee->excludes(p)
-	post hirePost: employee->includes(p)
-
-context Company::fire(p:Person)
-	pre firePre: employee->includes(p)
-	post firePost: employee->excludes(p)
-
-context Person::raiseSalary(rate:Real):Real
-	post raiseSalaryPost:
-		salary = salary@pre * (1.0 + rate)
-	post resultPost
-		result = salary
