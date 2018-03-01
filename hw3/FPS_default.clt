@@ -3,9 +3,9 @@
     <diagramOptions>
         <autolayout>false</autolayout>
         <antialiasing>false</antialiasing>
-        <showassocnames>false</showassocnames>
+        <showassocnames>true</showassocnames>
         <showattributes>true</showattributes>
-        <showmultiplicities>false</showmultiplicities>
+        <showmultiplicities>true</showmultiplicities>
         <showoperations>true</showoperations>
         <showrolenames>true</showrolenames>
         <showgrid>false</showgrid>
@@ -14,39 +14,39 @@
         <name>Human</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
             <x>34.0322265625</x>
-            <y>-7.141004012661199</y>
+            <y>7.858995987338801</y>
         </strategy>
         <hidden>false</hidden>
     </node>
     <node id="Knife" sizeCalculated="true" type="Class">
         <name>Knife</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>85.0</x>
-            <y>356.8186989557886</y>
+            <x>404.0</x>
+            <y>306.8186989557886</y>
         </strategy>
         <hidden>false</hidden>
     </node>
     <node id="Soldier" sizeCalculated="true" type="Class">
         <name>Soldier</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>363.4440935859694</x>
-            <y>29.89129144801649</y>
+            <x>491.4440935859694</x>
+            <y>15.891291448016489</y>
         </strategy>
         <hidden>false</hidden>
     </node>
     <node id="Shotgun" sizeCalculated="true" type="Class">
         <name>Shotgun</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>313.06298828125</x>
-            <y>264.1688583155753</y>
+            <x>341.06298828125</x>
+            <y>165.16885831557528</y>
         </strategy>
         <hidden>false</hidden>
     </node>
     <node id="Weapon" sizeCalculated="true" type="Class">
         <name>Weapon</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>46.31686948784909</x>
-            <y>237.0</y>
+            <x>72.31686948784909</x>
+            <y>292.0</y>
         </strategy>
         <hidden>false</hidden>
     </node>
@@ -59,8 +59,8 @@
                 sizeCalculated="true" type="rolename" userDefined="true" visible="true">
                 <name>shotgun</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>-1.0</userOffsetX>
-                    <userOffsetY>9.0</userOffsetY>
+                    <userOffsetX>50.0</userOffsetX>
+                    <userOffsetY>11.0</userOffsetY>
                     <attached>instantiation2OfWeapon::WayPoint::0</attached>
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>
@@ -87,8 +87,8 @@
                 sizeCalculated="true" type="rolename" userDefined="true" visible="true">
                 <name>weapon</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>27.0</userOffsetX>
-                    <userOffsetY>-16.0</userOffsetY>
+                    <userOffsetX>57.0</userOffsetX>
+                    <userOffsetY>8.0</userOffsetY>
                     <attached>instantiation2OfWeapon::WayPoint::1</attached>
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>
@@ -164,11 +164,11 @@
             <edgeproperty
                 id="instantiationOfWeapon::source::multiplicity"
                 sizeCalculated="true" type="multiplicity"
-                userDefined="false" visible="true">
+                userDefined="true" visible="true">
                 <name>1</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
                     <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
+                    <userOffsetY>-6.0</userOffsetY>
                     <attached>instantiationOfWeapon::WayPoint::0</attached>
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>
@@ -177,12 +177,11 @@
                 <hidden>false</hidden>
             </edgeproperty>
             <edgeproperty id="instantiationOfWeapon::source::rolename"
-                sizeCalculated="true" type="rolename"
-                userDefined="false" visible="true">
+                sizeCalculated="true" type="rolename" userDefined="true" visible="true">
                 <name>knife</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
+                    <userOffsetX>2.0</userOffsetX>
+                    <userOffsetY>13.0</userOffsetY>
                     <attached>instantiationOfWeapon::WayPoint::0</attached>
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>
@@ -191,12 +190,11 @@
                 <hidden>false</hidden>
             </edgeproperty>
             <edgeproperty id="instantiationOfWeapon::target::rolename"
-                sizeCalculated="true" type="rolename"
-                userDefined="false" visible="true">
+                sizeCalculated="true" type="rolename" userDefined="true" visible="true">
                 <name>weapon</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
                     <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
+                    <userOffsetY>8.0</userOffsetY>
                     <attached>instantiationOfWeapon::WayPoint::1</attached>
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>
@@ -207,11 +205,11 @@
             <edgeproperty
                 id="instantiationOfWeapon::target::multiplicity"
                 sizeCalculated="true" type="multiplicity"
-                userDefined="false" visible="true">
+                userDefined="true" visible="true">
                 <name>1</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
+                    <userOffsetX>4.0</userOffsetX>
+                    <userOffsetY>-8.0</userOffsetY>
                     <attached>instantiationOfWeapon::WayPoint::1</attached>
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>
@@ -221,11 +219,11 @@
             </edgeproperty>
             <edgeproperty id="instantiationOfWeapon::AssociationName"
                 sizeCalculated="true" type="associationName"
-                userDefined="false" visible="true">
+                userDefined="true" visible="true">
                 <name>instantiationOfWeapon</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
+                    <userOffsetX>4.0</userOffsetX>
+                    <userOffsetY>-3.0</userOffsetY>
                     <offsetX>0.0</offsetX>
                     <offsetY>-10.0</offsetY>
                     <related length="2">
@@ -273,8 +271,8 @@
                 sizeCalculated="true" type="rolename" userDefined="true" visible="true">
                 <name>human</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>7.0</userOffsetX>
-                    <userOffsetY>11.0</userOffsetY>
+                    <userOffsetX>6.0</userOffsetX>
+                    <userOffsetY>10.0</userOffsetY>
                     <attached>enemies::WayPoint::0</attached>
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>
@@ -284,12 +282,26 @@
             </edgeproperty>
             <edgeproperty id="enemies::source::multiplicity"
                 sizeCalculated="true" type="multiplicity"
-                userDefined="false" visible="true">
+                userDefined="true" visible="true">
                 <name>1</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
+                    <userOffsetX>8.0</userOffsetX>
+                    <userOffsetY>-9.0</userOffsetY>
                     <attached>enemies::WayPoint::0</attached>
+                    <offset_x>8</offset_x>
+                    <offset_y>8</offset_y>
+                    <placement>BOTTOM</placement>
+                </strategy>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty id="enemies::target::multiplicity"
+                sizeCalculated="true" type="multiplicity"
+                userDefined="true" visible="true">
+                <name>1..*</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
+                    <userOffsetX>-3.0</userOffsetX>
+                    <userOffsetY>-8.0</userOffsetY>
+                    <attached>enemies::WayPoint::1</attached>
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>
                     <placement>BOTTOM</placement>
@@ -306,20 +318,6 @@
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>
                     <placement>TOP</placement>
-                </strategy>
-                <hidden>false</hidden>
-            </edgeproperty>
-            <edgeproperty id="enemies::target::multiplicity"
-                sizeCalculated="true" type="multiplicity"
-                userDefined="false" visible="true">
-                <name>1..*</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                    <attached>enemies::WayPoint::1</attached>
-                    <offset_x>8</offset_x>
-                    <offset_y>8</offset_y>
-                    <placement>BOTTOM</placement>
                 </strategy>
                 <hidden>false</hidden>
             </edgeproperty>
@@ -373,26 +371,13 @@
         <target>Weapon</target>
         <name>heldWeapons</name>
         <properties>
-            <edgeproperty id="heldWeapons::source::rolename"
-                sizeCalculated="true" type="rolename" userDefined="true" visible="true">
-                <name>human</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>10.0</userOffsetY>
-                    <attached>heldWeapons::WayPoint::0</attached>
-                    <offset_x>8</offset_x>
-                    <offset_y>8</offset_y>
-                    <placement>TOP</placement>
-                </strategy>
-                <hidden>false</hidden>
-            </edgeproperty>
             <edgeproperty id="heldWeapons::source::multiplicity"
                 sizeCalculated="true" type="multiplicity"
-                userDefined="false" visible="true">
+                userDefined="true" visible="true">
                 <name>1</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
+                    <userOffsetX>26.0</userOffsetX>
+                    <userOffsetY>6.0</userOffsetY>
                     <attached>heldWeapons::WayPoint::0</attached>
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>
@@ -400,11 +385,24 @@
                 </strategy>
                 <hidden>false</hidden>
             </edgeproperty>
+            <edgeproperty id="heldWeapons::source::rolename"
+                sizeCalculated="true" type="rolename" userDefined="true" visible="true">
+                <name>human</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
+                    <userOffsetX>-3.0</userOffsetX>
+                    <userOffsetY>6.0</userOffsetY>
+                    <attached>heldWeapons::WayPoint::0</attached>
+                    <offset_x>8</offset_x>
+                    <offset_y>8</offset_y>
+                    <placement>TOP</placement>
+                </strategy>
+                <hidden>false</hidden>
+            </edgeproperty>
             <edgeproperty id="heldWeapons::target::rolename"
                 sizeCalculated="true" type="rolename" userDefined="true" visible="true">
                 <name>weapons</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>3.0</userOffsetX>
+                    <userOffsetX>0.0</userOffsetX>
                     <userOffsetY>1.0</userOffsetY>
                     <attached>heldWeapons::WayPoint::1</attached>
                     <offset_x>8</offset_x>
@@ -415,11 +413,11 @@
             </edgeproperty>
             <edgeproperty id="heldWeapons::target::multiplicity"
                 sizeCalculated="true" type="multiplicity"
-                userDefined="false" visible="true">
+                userDefined="true" visible="true">
                 <name>*</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
+                    <userOffsetX>23.0</userOffsetX>
+                    <userOffsetY>4.0</userOffsetY>
                     <attached>heldWeapons::WayPoint::1</attached>
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>

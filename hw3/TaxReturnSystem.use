@@ -5,7 +5,7 @@ class Taxpayer
 attributes
 	grossIncome:Real
 	numDependents:Integer
-	married:Boolean
+	married:Boolean init=false
 	stateOfResidency:Real
 	returnFederal:FederalReturn
 	returnState:StateReturn
@@ -14,18 +14,30 @@ end
 
 class FederalReturn
 attributes
+	returnAmt:Real
+	checkHasBeenMailed:Boolean init=false
 operations
+	calculateReturn():Real
+	mailCheck()
+	begin
+		self.checkHasBeenMailed:=true
+	end
 end
 
 class StateReturn
 attributes
+	returnAmt:Real
+	checkHasBeenMailed:Boolean init=false
 operations
+	calculateReturn():Real
+	mailCheck()
+	begin
+		self.checkHasBeenMailed:=true
+	end
 end
 
-abstract class TaxReturn
+abstract class TaxReturnInterface
 attributes
-	returnAmt:Real
-	checkIsMailed:Boolean
 operations
 	calculateReturn():Real
 	mailCheck()
@@ -44,12 +56,12 @@ association stateReturn between
 end
 
 association instantiateReturnState between
-	TaxReturn [1] role returnInterface
+	TaxReturnInterface [1] role returnInterface
 	StateReturn [1] role stateReturn
 end
 
 association instantiateReturnFed between
-	TaxReturn [1] role returnInterface
+	TaxReturnInterface [1] role returnInterface
 	FederalReturn [1] role fedReturn
 end
 
@@ -67,4 +79,12 @@ context Taxpayer
 
 context Taxpayer
 	inv: (self.returnState).oclIsUndefined = false
+
+context StateReturn::mailCheck()
+	pre: self.checkHasBeenMailed = false
+	post: self.checkHasBeenMailed = true
+
+context FederalReturn::mailCheck()
+	pre: self.checkHasBeenMailed = false
+	post: self.checkHasBeenMailed = true
 	
