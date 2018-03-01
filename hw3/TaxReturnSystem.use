@@ -1,0 +1,70 @@
+model TaxReturnSystem
+
+-- classes
+class Taxpayer
+attributes
+	grossIncome:Real
+	numDependents:Integer
+	married:Boolean
+	stateOfResidency:Real
+	returnFederal:FederalReturn
+	returnState:StateReturn
+operations
+end
+
+class FederalReturn
+attributes
+operations
+end
+
+class StateReturn
+attributes
+operations
+end
+
+abstract class TaxReturn
+attributes
+	returnAmt:Real
+	checkIsMailed:Boolean
+operations
+	calculateReturn():Real
+	mailCheck()
+end
+
+
+-- associations
+association federalReturn between
+	Taxpayer [1] role taxpayer
+	FederalReturn [1] role fedReturn
+end
+
+association stateReturn between
+	Taxpayer [1] role taxpayer
+	StateReturn [1] role stateReturn
+end
+
+association instantiateReturnState between
+	TaxReturn [1] role returnInterface
+	StateReturn [1] role stateReturn
+end
+
+association instantiateReturnFed between
+	TaxReturn [1] role returnInterface
+	FederalReturn [1] role fedReturn
+end
+
+
+-- constraints
+constraints
+context Taxpayer
+	inv: self.grossIncome >= 0
+
+context Taxpayer
+	inv: self.numDependents >= 0
+
+context Taxpayer
+	inv: (self.returnFederal).oclIsUndefined = false
+
+context Taxpayer
+	inv: (self.returnState).oclIsUndefined = false
+	
