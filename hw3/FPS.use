@@ -1,5 +1,116 @@
 model FPS
 
+/*
+* State pattern interface
+*/
+abstract class FPSState
+operations
+	attackEnemy(human:Human)
+	begin
+	end
+
+	receiveAttack(human:Human)
+	begin
+	end
+
+	enemyKilled(human:Human)
+	begin
+	end
+end
+
+class Neutral < FPSState
+operations
+	attackEnemy(human:Human)
+	begin
+		if (human.distFromClosestEnemy <= human.heldWeapon.range) then
+			if (human.myTurnToAttack = true) then
+				human.fpsState := human.attackState;
+			end;
+		end;
+	end
+
+	receiveAttack(human:Human)
+	begin
+		if (human.distFromClosestEnemy > human.heldWeapon.range) then
+			if (human.myTurnToAttack = false) then
+				human.fpsState := human.panicState;
+			end;
+		end;
+	end
+
+	enemyKilled(human:Human)
+	begin
+		WriteLine('No enemies around, no one to kill at the moment');
+	end
+end
+
+class Attack < FPSState
+operations
+	attackEnemy(human:Human)
+	begin
+		human.closestEnemy.receiveAttack(human.heldWeapon);
+	end
+
+	receiveAttack(human:Human)
+	begin
+		if (human.health <= 0) then
+			human.fpsState := human.dieState;
+		end;
+	end
+
+	enemyKilled(human:Human)
+	begin
+		if (human.closestEnemy.health <= 0) then
+			human.fpsState := human.neutralState;
+		end;
+	end
+end
+
+class Panic < FPSState
+operations
+	attackEnemy(human:Human)
+	begin
+		WriteLine('PANIC! NO TIME TO ATTACK ENEMY! PANIC!');
+	end
+
+	receiveAttack(human:Human)
+	begin
+		if (human.health <= 0) then
+			human.fpsState := human.dieState;
+		end;
+	end
+
+	enemyKilled(human:Human)
+	begin
+		if (human.closestEnemy.health <= 0) then
+			human.fpsState := human.neutralState;
+		end;
+	end
+end
+
+class Die < FPSState
+operations
+	attackEnemy(human:Human)
+	begin
+		WriteLine('No attacking for you, you are very dead');
+	end
+
+	receiveAttack(human:Human)
+	begin
+		WriteLine('Nope you are dead, any attacks received are pointless');
+	end
+
+	enemyKilled(human:Human)
+	begin
+		WriteLine('You are already dead, you can not kill anyone else');
+	end
+end
+
+
+
+/*
+* Classes to represent a Human, an enemy Soldier, and two types of weapons
+*/
 -- classes
 class Human
 attributes
@@ -8,39 +119,60 @@ attributes
 	heldWeapon:Weapon
 	myTurnToAttack:Boolean
 	distFromClosestEnemy:Real
+	closestEnemy:Soldier
+	fpsState : FPSState
+	neutralState : FPSState
+	attackState : FPSState
+	panicState : FPSState
+	dieState : FPSState
 operations
+	initInstance()
+	begin
+		self.fpsState := self.neutralState;
+	end
 	receiveAttack()
-	attackEnemy(heldWeapon:Weapon)
-	enemyKilled():Boolean
+	begin
+		self.fpsState.receiveAttack(self);
+	end 
+	attackEnemy()
+	begin
+		self.fpsState.attackEnemy(self);
+	end
+	enemyKilled()
+	begin
+		self.fpsState.enemyKilled(self);
+	end
 statemachines
 	psm FightingThings
 	states
 		startUp:initial
-		neutral [alive=true]
-		attack [alive=true]
-		panic [alive=true]
-		die [alive=true]
+		neutral [alive = true]
+		attack [alive = true]
+		panic [alive = true]
+		die [alive = false]
 	transitions
-		startUp -> neutral {create}
-		neutral -> attack { attackEnemy() [distFromClosestEnemy<=heldWeapon.range and myTurnToAttack=true] }
-		neutral -> panic { receiveAttack() [distFromClosestEnemy>heldWeapon.range and myTurnToAttack=false] }
-		attack -> neutral { enemyKilled() }
-		attack -> die { receiveAttack() [health<=0] }
-		panic -> neutral { enemyKilled() }
-		panic -> die { receiveAttack() [health<=0] }
+		startUp -> neutral { create }
+		neutral -> attack { attackEnemy() [ distFromClosestEnemy <= heldWeapon.range and myTurnToAttack = true ] }
+		neutral -> panic { receiveAttack() [distFromClosestEnemy > heldWeapon.range and myTurnToAttack = false ] }
+		attack -> neutral { enemyKilled() [ closestEnemy.health <= 0 ] }
+		attack -> die { receiveAttack() [ health <= 0 ] }
+		panic -> neutral { enemyKilled() [ closestEnemy.health <= 0 ] }
+		panic -> die { receiveAttack() [ health <= 0 ] }
 	end
 end
 
 class Soldier
 attributes
-	alive:Boolean init=true
-	health:Integer
+	health:Integer init=100
 	enemyTurnToAttack:Boolean
 	damageFromKnife:Integer init=15
 	damageFromGun:Integer init=10
 operations
 	attackHuman()
 	receiveAttack(attackingWeapon:Weapon)
+	begin
+		self.health := self.health - attackingWeapon.baseDamage;
+	end
 end
 
 abstract class Weapon
@@ -49,10 +181,10 @@ attributes
 	range:Real
 end
 
-class Knife
+class Knife < Weapon
 end
 
-class Shotgun
+class Shotgun < Weapon
 end
 
 
@@ -67,14 +199,9 @@ association heldWeapons between
 	Weapon [*] role weapons
 end
 
-association instantiationOfWeapon between
-	Knife [1] role knife
-	Weapon [1] role weapon
-end
-
-association instantiation2OfWeapon between
-	Shotgun [1] role shotgun
-	Weapon [1] role weapon
+association fpsState between
+	Human [1] role human
+	FPSState [1] role state
 end
 
 
